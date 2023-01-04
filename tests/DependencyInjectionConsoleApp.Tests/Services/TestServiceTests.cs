@@ -1,5 +1,5 @@
 ﻿using DependencyInjectionConsoleApp.Services;
-
+using Moq;
 
 namespace DependencyInjectionConsoleApp.Tests.Services
 {
@@ -11,7 +11,7 @@ namespace DependencyInjectionConsoleApp.Tests.Services
             try
             {
                 var testService = new TestService();
-                await testService.Execute();
+                await testService.ExecuteAsync();
             }
             catch (Exception ex)
             {
@@ -19,6 +19,23 @@ namespace DependencyInjectionConsoleApp.Tests.Services
                 Assert.Fail(ex.Message);
             }
             
+        }
+
+
+        [Fact]
+        public async Task ExecuteWithMessageSuccess()
+        {
+            try
+            {
+                var testService = new TestService();
+                await testService.ExecuteAsync(It.IsAny<string>());
+            }
+            catch (Exception ex)
+            {
+
+                Assert.Fail(ex.Message);
+            }
+
         }
     }
 }

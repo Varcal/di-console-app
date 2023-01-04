@@ -1,5 +1,5 @@
 ﻿using DependencyInjectionConsoleApp.Services;
-
+using Microsoft.Extensions.Configuration;
 
 namespace DependencyInjectionConsoleApp
 {
@@ -10,16 +10,20 @@ namespace DependencyInjectionConsoleApp
 
     public class Main : IMain
     {
+        private readonly IConfiguration _configuration;
         private readonly ITestService _testService;
 
-        public Main(ITestService testService)
+        public Main(IConfiguration confuguration, ITestService testService)
         {
+            _configuration = confuguration;
             _testService = testService;
         }
 
         public async Task RunAsync()
         {
-            await _testService.Execute();
+            var message = _configuration.GetSection("Message").Value;
+            await _testService.ExecuteAsync();
+            await _testService.ExecuteAsync(message);
         }
     }
 }

@@ -5,19 +5,28 @@ namespace DependencyInjectionConsoleApp.Services
 
     public interface ITestService
     {
-        Task Execute();
+        Task ExecuteAsync();
+        Task ExecuteAsync(string message);
     }
 
 
     public class TestService : ITestService
     {
-        public async Task Execute()
+        public async Task ExecuteAsync()
         {
-            _ = Task.Run(() =>
+            await Task.Run(() =>
             {
                 Console.WriteLine("Hello World!!!");
-                Console.ReadKey();
-            });  
+            });
+        }
+
+        public async Task ExecuteAsync(string message)
+        {
+            await Task.Run(() =>
+            {
+                Console.WriteLine(message);
+                
+            });
         }
     }
 }

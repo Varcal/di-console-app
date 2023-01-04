@@ -1,4 +1,5 @@
 ﻿using DependencyInjectionConsoleApp.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics.CodeAnalysis;
@@ -12,6 +13,10 @@ namespace DependencyInjectionConsoleApp
         {
             Console.WriteLine("Run console app");
             await Host.CreateDefaultBuilder(args)
+               .ConfigureAppConfiguration(app =>
+               {
+                   app.AddJsonFile("appsettings.json");
+               })
                .ConfigureServices(ConfigureServices)
                .ConfigureServices(services => services.AddSingleton<IMain, Main>())
                .Build()
