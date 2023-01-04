@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace DependencyInjectionConsoleApp.Services
+﻿namespace DependencyInjectionConsoleApp.Services
 {
 
     public interface ITestService
