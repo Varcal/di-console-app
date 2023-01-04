@@ -1,9 +1,11 @@
 ﻿using DependencyInjectionConsoleApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DependencyInjectionConsoleApp
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static async Task Main(string[] args)
