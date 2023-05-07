@@ -5,7 +5,7 @@ namespace DependencyInjectionConsoleApp
 {
     public interface IMain
     {
-        Task RunAsync();
+        Task RunAsync(string[] args);
     }
 
     public class Main : IMain
@@ -19,11 +19,17 @@ namespace DependencyInjectionConsoleApp
             _testService = testService;
         }
 
-        public async Task RunAsync()
+        public async Task RunAsync(string[] args)
         {
             var message = _configuration.GetSection("Message").Value;
             await _testService.ExecuteAsync();
-            await _testService.ExecuteAsync(message);
+
+
+            foreach (var item in args)
+            {
+                await _testService.ExecuteAsync($"{message} = {item}");
+            }
+            
         }
     }
 }

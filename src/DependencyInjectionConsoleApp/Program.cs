@@ -19,11 +19,13 @@ namespace DependencyInjectionConsoleApp
                .ConfigureServices(ConfigureServices)
                .ConfigureServices(services => services.AddSingleton<IMain, Main>())
                .Build()
-               .Services.GetService<IMain>().RunAsync();
-        }       
+               .Services.GetService<IMain>().RunAsync(args);
+        }
 
         private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
+            services.AddLogging();
+
             services.AddTransient<ITestService, TestService>();
         }
     }
