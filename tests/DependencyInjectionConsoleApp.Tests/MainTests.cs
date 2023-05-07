@@ -26,9 +26,10 @@ namespace DependencyInjectionConsoleApp.Tests
         [Fact]
         public async Task RunAsyncSuccess()
         {
+            var args = new[] { "1", "2", "3" };
             _testService.Setup(x => x.ExecuteAsync());
 
-            await _main.RunAsync();
+            await _main.RunAsync(args);
 
             _testService.VerifyAll();
         }
